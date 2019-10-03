@@ -1,0 +1,25 @@
+#include <stdio.h>//incluye la librería de fiunciones standard input output
+#include <math.h>//include la librería de funciones matemáticas
+
+void main()//funcion principal en donde se desarrolla el programa
+{
+    float centig,fahre,Cfar=0,Ccent=0; /*declaro como float los grados centigrados (centig) y fahrenheit(fahre), además incluyo Ccen inicializado a 0 para conversion a centigrados
+    para conversion a centigrados y Cfar inicializado a 0 para conversion a fharenheit*/
+    
+    printf("Ingrese los grados centígrados que quiera convertir a fahrenheit:");//pide al usuario que ingrese grados centígrados
+    
+    scanf("%f",&centig);//lee los datos ingresados (grados centígrados)
+    
+    printf("Ingrese los grados fahrenheit que desee convertir a centígrados:");//pide al usuario que ingrese grados en fahrenheit
+    
+    scanf("%f",&fahre);//lee los datos ingresados (fahrenheit)
+    
+    Cfar=((9 * centig)/5) + 32;//formula para convertir grados celsius a fharenheit
+    
+    Ccent= ((fahre - 32)*5)/9;//formula para convertir grados fahrenheit en celsius
+    
+    printf("Los grados centígrados (%.2f) que ingresó equivalen a %.2f Fahrenheit\nLos grados Fahrenheit que inbgresó (%.2f) equivalen a %.2f Centígrados.",centig,Cfar,fahre,Ccent);
+    //presenta los datos ingresados y sus conversiones respectivas
+    
+    printf("\n*  * **** *    ****\n**** *  * *    ****\n*  * **** **** *  *");// escribe hola
+}
