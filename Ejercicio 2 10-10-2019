@@ -1,0 +1,80 @@
+/******************************************************************************
+
+Columna2.- Se desea calcular el salario neto semanal de un trabajador
+en función del número de horas trabajadas y la tasa de impuestos: 
+ 
+Las primeras 35 horas de pagan a tarifa normal. 
+Las horas que pasen de 35 se pagan a 1.5 veces la tarifa normal
+Las tasas de impuestos son: 
+1. Los primeros 1000 dólares son libres de impuestos. 
+2. Los siguientes 500 dólares tienen un 25% de impuestos. 
+3. Los restantes, un 45% de impuestos. 
+ 
+La tarifa horaria es de 40 dólares 
+Se desea escribir el SALARIO BRUTO(salario antes de impuesto), 
+TASAS DE IMPUESTOS , Y SALARIO NETO(salario después de impuestos). 
+
+DATOS DE ENTRADA
+float tarH=40,Sal=0,SalN=0,SalB=0,impuestos=0
+int horas
+En donde tarH es la tarifa horaria, Sal es el salario, SalB es el salario bruto, SalN es el salario NETO
+y horas son las horas de trabajo.
+DATOS DE SALIDA
+SalB, SalN e impuestos
+
+PROCESO
+
+SI horas <= 35 entonces tarh=40,Sal=horas*tarH
+    SINO tarH=40*1.5, Sal=horas*tarH
+
+SalB=Sal
+
+SI Sal<=1000 entonces SalN=Sal
+    SINO SI Sal<=1500 entonces impuestos=Sal*0.25, SalN=Sal-impuestos
+        SINO SI Sal>1500 entonces impuestos=0.4*Sal, SalN=Sal-impuestos
+        FIN SI
+    FIN SI
+FIN SI
+
+*******************************************************************************/
+#include <stdio.h>
+#include <math.h>
+
+void main()
+{
+    float tarH=40,Sal=0,SalN=0,SalB=0,impuestos=0; //En donde tarH es la tarifa horaria, Sal es el salario, SalB es el salario bruto, SalN es el salario NETO
+    int horas; //horas son las horas de trabajo.
+    printf("Ingrese las horas de trabajo: ");
+    scanf("%d",&horas);
+    if(horas<=35)// dependiendo del numero de horas cambia la tarifa horaria
+    {    
+        tarH=40;// tarifa normal 40 dolares
+        
+        Sal=horas*tarH;//multiplicado por horas de trabajo
+    }
+    else
+    {
+        tarH=40*1.5;//tarifa aumentada 1.5 veces
+        
+        Sal=horas*tarH;//multiplicado por horas de trabajo
+    }
+    SalB=Sal; //Asignamos el valor del salario a salario bruto(salario sin deducciones)
+
+    if(Sal<=1000)// dependiendo del salario obtenido asignamos la tasa de impuestos
+        SalN=Sal;// no aplican impuestos
+    else if (Sal<=1500)
+    {
+        impuestos=Sal*0.25;//aplica un impuesto de 25%
+        
+        SalN=Sal-impuestos;//Salario neto = salario obtenido - tasa de impuestos(25% en este caso)
+    }
+    else if (Sal>1500)
+    {
+        impuestos=0.4*Sal;// aplica un impuesto del 40%
+        
+        SalN=Sal-impuestos;//Salario neto = salario obtenido - tasa de impuestos(40% en este caso)
+    }
+    printf("Su Salario Bruto es %.2f.\nSu Salario Neto es de%.2f.\nSu Tasa de Impuestos es de %.2f.",SalB,SalN,impuestos);
+    
+    
+}
