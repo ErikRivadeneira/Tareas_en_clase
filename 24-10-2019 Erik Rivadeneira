@@ -1,0 +1,34 @@
+#include <stdio.h>//incluye la biblioteca de escritura y lectura
+#include <math.h>//incluye la biblioteca de funciones matemáticas para obtener las potencias
+
+void main()
+{
+    int NUM, suma=0, cuadrado;//declaracion de variables NUM para los numeros que ingresa el usuario, suma para la suma de los cuadrados
+    //y cuadrado para pbtener los cuadrados de los números
+    
+    printf("Escriba un número positivo para obtener su cuadrado, para salir presione 0:");// pide al usuario el número y le informa de la condición
+    // de salida
+    
+    scanf("%d",&NUM);//lee el número ingresado
+    
+    while(NUM!=0)//mientras el usuario no ingrese 0, el programa seguirá recogiendo números
+    {
+        while(NUM<0)//si el usuario ingresa un número negativo, el programa pedirá números positivos
+        {
+            printf("Por favor escriba un número positivo: ");//pide al usuario el ingreso de un númro positivo
+            
+            scanf("%d",&NUM);//obtiene el cuadrado del numero ingresado
+        }
+        cuadrado=pow(NUM,2);//obtiene el cuadrado del número ingresado
+        
+        printf("El cuadrado del numero ingresado es %d\n",cuadrado);// muestra al usuario el cuadrado del número ingresado
+        
+        suma=suma+cuadrado;//obtiene la suma de los cuadrados de los numeros ingresados por el usuario
+        
+        printf("Escriba otro número positivo para obtener su cuadrado, si desea obtener la suma de los cuadrados anteriores presione 0");
+        // pide al usuario el número y le informa de la condición de salida
+        
+        scanf("%d",&NUM);//lee el número ingresado
+    }
+    printf("La suma de los cuadrados es %d",suma);//escribe la suma de los cuadrados
+}
