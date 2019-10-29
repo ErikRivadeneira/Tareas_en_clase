@@ -1,0 +1,123 @@
+/******************************************************************************
+
+EXAMEN PROGRESO 1 ERIK ALEXANDER RIVADENEIRA BLANCO,
+espero sea de su agrado y no haya mucho bug XDXD.
+A CONTINUACION LOS ENUNCIADOS
+
+1)
+En un spa realizaron un análisis de los clientes registrados en los últimos cinco años con el
+objeto de conocer los gastos de internación de cada cliente. Construye un programa en C que
+calcule el costo de internación de un cliente, según los datos de la tabla . Se sabe que los
+clientes mayores de 60 años tienen un descuento de 25% y los clientes menores de 25 años,
+de 15%.
+
+Datos: tra, edad y dia
+Donde: tra es una variable de tipo entero que representa el tipo de tratamiento.
+edad es una variable de tipo entero que representa la edad del cliente.
+dia es una variable de tipo entero que expresa el número de días.
+trat y costo
+1  ->  2800
+2  ->  1950
+3  ->  2500
+4  ->  1150
+
+2)Construye un programa en C que, al recibir como dato un número entero positivo, escriba una
+figura como la que se muestra a continuación (ejemplo para num = 6):
+
+1
+12
+123
+1234
+12345
+123456
+12345
+1234
+123
+12
+1
+*******************************************************************************/
+#include <stdio.h>
+
+void main()
+{
+    int op;
+    do
+    {
+        
+        printf("\t\t*****MENU*****\n1)Costo Spa\n2)Print Numero\n3)Salir del programa\nElija una opción: ");
+        scanf("%d",&op);
+        switch (op)
+        {
+            case 1:
+            {
+                int edad, dia, tratamiento;
+                float costo;
+                printf("Ingrese el tipo de tratamineto: ");
+                scanf("%d",&tratamiento);
+                printf("Ingrese los días que recibirá el tratamiento: ");
+                scanf("%d",&dia);
+                printf("Ingrese la edad del paciente: "),
+                scanf("%d",&edad);
+                if (tratamiento==1)
+                    costo=2800;
+                else if (tratamiento ==2)
+                    costo=1950;
+                else if (tratamiento==3)
+                    costo=2500;
+                else if (tratamiento==4)
+                    costo=1150;
+                if (edad>60)
+                    costo=costo*(0.25);
+                else if (edad<25)
+                    costo=costo*0.15;
+                costo=costo*dia;
+                printf("El costo de su tratamiento es %.2f dólares.\n",costo);
+            }
+            break;
+            case 2:
+            {
+                int num,i=1,num2;// NUM2 ES UN DUPLICADO DE NUM, NUM ES EL NUMERO INGRESADO E i es el controlador
+                //para lo while
+                printf("Ingrese un número positivo: ");
+                scanf("%d",&num);
+                while(num<0)
+                {
+                    printf("Por favor ingrese un número positivo: ");
+                    scanf("%d",&num);
+                }
+                num2=1;
+                while(num2<=num)//con este while se escribe ne triangulo rectangulo 1,12,123,etc
+                {
+                    i=1;
+                    while(i<=num2)
+                    {
+                        printf("%d",i);
+                        i++;
+                    }
+                    num2++;
+                    printf("\n");
+                }
+                num2=num-1;
+                while(num2>0)//con este while se regresa al 1 para formar una piramide, 123,12,1,desde el ultiumo numero escrito
+                //por el while anterior
+                {
+                    i=1;
+                    while(i<=num2)
+                    {
+                        printf("%d",i);
+                        i++;
+                    }
+                    num2--;
+                    printf("\n");
+                }
+            }
+            case 3:
+                printf("\nHa salido del Programa exitosamente.");
+            break;
+            default:
+                printf("Opción inválida.");
+            break;
+        }    
+    }
+    while (op!=3);
+}
