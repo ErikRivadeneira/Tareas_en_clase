@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+//float areacir(float) tambien sirve para declarar, no es estrictamente necesario nombrar la variable al definir el prototipo de funcion
+float areaCir(float);
+int factorial (int);
+int tablaMul (int, int);
+void parImpar(int);
+int PosNegCer (int, int);
+void main ()
+{
+    float radio;
+    int num, tabla, lim, op;
+    
+        while (op!=6)
+    {
+        printf("MENU\n1)Area del circulo\n2)Factorial\n3)Tabla de multiplicar\n4)Par o Impar\n5)Positivo Negativo o Cero\n6)Salir\nEscoja una opción: ");
+        scanf("%d",&op);
+	    
+        switch(op)
+        {
+            case 1:
+            {
+                printf("\nIngrese el radio del circulo.\n");
+                scanf("%f",&radio);
+                printf("\nEl Area del sirculo es %.2f.", areaCir(radio));
+                getchar();
+                system("clear");
+            }
+            break;
+            case 2:
+            {
+                printf("\nIngrese el número del que desea obtener el factorial: ");
+                scanf("%d",&num);
+                printf("\nEl factorial de su numero es %d", factorial(num));
+                getchar();
+                system("clear");
+            }
+            break;
+            case 3:
+            {
+                printf("\nIngrese la tabla de multiplicar: ");
+                scanf("%d",&tabla);
+                printf("\nIngrese el limite de la tabla: ");
+                scanf("%d",&lim);
+                printf("%d", tablaMul(tabla, lim));
+                getchar();
+                system("clear");
+            }
+            break;
+            case 4:
+            {
+                printf("Ingrese el número que desea revisar: ");
+                scanf("%d",&num);
+                parImpar(num);
+                getchar();
+                system("clear");
+            }
+            break;
+            case 5:
+            {
+                printf("¿Cuántos números desea evaluar: ");
+                scanf("%d",&lim);
+                PosNegCer(num, lim);
+                getchar();
+                system("clear");
+            }
+            break;
+            case 6:
+            {
+               exit(0);
+                
+            }
+            break;
+            default:
+            {
+                printf("Opcion no valida.");
+                getchar();
+                system("clear");
+            }
+            break;
+        }
+    }
+    
+    
+}
+
+float areaCir(float radio)
+{
+    float area=0, pi=3.1416;
+    
+    area=pi*pow(radio,2);
+    
+    return area;
+}
+int factorial(int num)
+{
+    int fact=1,cont=1;
+    
+    while(cont<=num)
+    {
+        fact=fact*cont;
+        cont++;
+    }
+    return fact;
+}
+int tablaMul (int tabla, int lim)
+{
+    int mult=1, cont= 1;
+    while (cont<=lim)
+    {
+        mult=tabla*cont;
+        printf("%dx%d=%d\n",tabla,cont,mult);
+        cont++;
+    }
+    return mult;
+}
+void parImpar(int num)
+{
+    if(num%2==0)
+    {
+        printf("\nPar");
+    }
+    else
+    {
+        printf("\nImpar");
+    }
+}
+int PosNegCer(int num, int lim)
+{
+    int cont=1, pos=0, Neg=0, Cer=0;
+    while (cont<=lim)
+    {
+        if(num>0)
+            pos++;
+        else if(num<0)
+            Neg++;
+        else if (num==0)
+            Cer++;
+        printf("\nIngrese un número para evaluar: ");
+        scanf("%d",&num);
+        cont++;
+    }
+    printf("De %d numeros hubieron %d Positivos, %d Negativos y %d Ceros.\n", lim, pos, Neg, Cer);
+    return pos, Neg, Cer;
+}
