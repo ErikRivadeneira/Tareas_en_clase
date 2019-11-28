@@ -1,0 +1,203 @@
+#include<stdio.h>
+#include <stdlib.h>
+#define tam 50
+void inicializarMatriz(float [][tam]);
+float ingresoDatosMatriz(int, int);
+void sumaMatrices(int, int);
+void EstudiantesPromNotas (int, int);//decalración de la función del ejercicio
+void main()
+{
+	float numeros[][tam]={{2,3.4,-5.3},{2,1,-1}};
+	int op=0,fil,col,estudiantes,notas;
+	while(op!=5)
+	{
+		printf("1.Inicializacion Matriz\n2.Ingreso Datos Matriz\n3.Suma Matrices\n4.Estudiantes, notas, promedio\n5.Salir\nn");//se añade el caso correspondiente
+		printf("Ingrese la opcion:");
+		scanf("%d",&op);
+		switch(op)
+		{
+			case 1:
+				inicializarMatriz(numeros);
+				getch();
+				system("cls");
+			break;
+			case 2:
+				printf("Ingrese el numero de filas:");
+				scanf("%d",&fil);
+				printf("Ingrese el numero de columnas:");
+				scanf("%d",&col);
+				printf("La suma es %.1f",ingresoDatosMatriz(fil,col));
+				getch();
+				system("cls");
+			break;
+			case 3:
+				printf("Ingrese el numero de filas:");
+				scanf("%d",&fil);
+				printf("Ingrese el numero de columnas:");
+				scanf("%d",&col);
+				sumaMatrices(fil,col);
+			break;
+			case 4:
+				printf("Ingrese el número de estudiantes: ");//pide el numero de estudiantes
+				scanf("%d",&estudiantes);//lee el numero de estudiantes
+				printf("Ingrese el número de notas de cada estudiante: ");//pide el numero de notas por estudiante
+				scanf("%d",&notas);//lee el numero de npotas por estudiante
+				EstudiantesPromNotas(estudiantes, notas);//llama a la funcion
+				getch();
+				system("cls");	
+			break;
+				exit(0);
+			break;
+			default:
+				printf("Opcion Invalida\n");
+			break;
+		}
+	}	
+}
+
+void inicializarMatriz(float arreglo[][tam])
+{
+	int i=0,j;
+	while(i<2)
+	{
+		j=0;
+		while(j<3)
+		{
+			printf("%.1f\t",arreglo[i][j]);
+			j++;
+		}
+		printf("\n");
+	i++;
+	}
+	
+}
+
+float ingresoDatosMatriz(int fila,int colum)
+{
+	int i=0,j;
+	float arreglo[fila][colum],suma=0;
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("Ingrese el elemento [%d][%d]:",i,j);
+			scanf("%f",&arreglo[i][j]);
+			j++;
+		}
+	i++;
+	}
+	i=0;
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("%.1f\t",arreglo[i][j]);
+			suma=suma+arreglo[i][j];
+			j++;
+		}
+		printf("\n");
+	i++;
+	}
+	return suma;
+}
+
+void sumaMatrices(int fila,int colum)
+{
+	int i=0,j;
+	float matrizA[fila][colum],matrizB[fila][colum],matrizC[fila][colum];
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("Ingrese el elemento A[%d][%d]:",i,j);
+			scanf("%f",&matrizA[i][j]);
+			j++;
+		}
+	i++;
+	}
+	i=0;
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("Ingrese el elemento B[%d][%d]:",i,j);
+			scanf("%f",&matrizB[i][j]);
+			j++;
+		}
+	i++;
+	}
+	i=0;
+	printf("Matriz A\n");
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("%.1f\t",matrizA[i][j]);
+		j++;
+		}
+		printf("\n");
+	i++;
+	}
+	i=0;
+	printf("Matriz B\n");
+	while(i<fila)
+	{
+		j=0;
+		while(j<colum)
+		{
+			printf("%.1f\t",matrizB[i][j]);
+		j++;
+		}
+		printf("\n");
+	i++;
+	}
+	
+}
+void EstudiantesPromNotas (int estudiantes, int notas)//implementacion de la funcion del ejercicio
+{
+	int i=0,j;//declara las variables i y j para asociar a filas y columnas
+	float arreglo[estudiantes][notas],suma=0, prom;//declara el arreglo bidimensional, la suma y el promedio
+	while(i<estudiantes)//mientras i sea menor al numero de estudiantes se ejecutará
+	{
+		j=0;//inicializa j como 0 para el ingreso de elementos
+		while(j<notas)//while para la lectura de los elementos de las columnas
+		{
+			printf("\nIngrese la nota del estudiante %d: ",++i);//prompt para pedir la nota del estudiante correspondiente sin que este empiece por 0
+			--i;//regresa al índice correcto del estudainte 0
+			scanf("%f",&arreglo[i][j]);//lee la nota ingresada
+			while(arreglo[i][j]>10||arreglo[i][j]<0)//while para validar notas de acuerdo al formato ecuatoriano(0 a 10)
+			{
+				printf("Ingrese una nota válida: ");//pide una nota valida al usuario
+				scanf("%f",&arreglo[i][j]);//lee la nota ingresada
+			}
+			j++;//cambia a la siguiente nota(columna)
+		}
+	i++;//cambia al siguiente estudiante(fila)
+	}
+	i=0;//inicializa i como 0
+	while(i<estudiantes)//mientras i sea menor al numero de estudiantes se ejecutará
+	{
+		suma=0;//inicializa la suma como 0
+		++i;//aumenta 1 unidad a i
+		printf("Estudiante %d\n",i--);//escribe el estudiante actual y despues regresa al indice correcto de la fila
+		j=0;//inicializa las columnas
+		while(j<notas)//while para imprimir las notas del estudiante
+		{
+			printf("%.1f\t",arreglo[i][j]);//imprime la nota de la posición i j correspondiente
+			suma=suma+arreglo[i][j];//suma las notas impresas
+			j++;//pasa a la nota de la siguiente columna
+		}
+		printf("\n");//salta a la siguiente linea
+		prom=suma/notas;//obtiene el promedio	
+		printf("\nEl estudiante %d tiene un promedio de %.2f\n",++i, prom);//suma la unidad al indice de filas para expresar el estudiante y escribe el promedio de las notas	
+		--i;//regresa al indice de fila correspondiete	
+		i++;//pasa a la siguiente fila(estudiante)
+	}
+	
+}
+
