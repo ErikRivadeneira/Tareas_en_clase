@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <locale.h>
+void IngDat (int);
+void IngDattabla (int, int);
+void SeriePares (int);
+void TabMult (int, int);
+void IngFact (int);//ingreso de datos factorial
+void ProcFact(int);//proceso factorial
+FILE *archivo;
+void main ()
+{
+	int CantN, tab, lim, facto;
+	setlocale(LC_ALL,"spanish");
+	archivo=fopen("datos.txt","w");
+	IngDat(CantN);
+	IngDattabla(tab, lim);
+	IngFact(facto);//ingresa al ingreso de datos factorial
+	
+}
+void IngDat(int CantN)
+{
+	printf("Ingrese la cantidad de números pares: ");
+	fputs("Ingrese la cantidad de números pares: ",archivo);
+	scanf("%d", &CantN);
+	SeriePares(CantN);
+}
+void SeriePares(int CantN)
+{
+	int i, par=2;
+	for (i=0; i<CantN;i++)
+	{
+		printf("\n%d",par);
+		fprintf(archivo,"\n%d",par);
+		par=par+2;
+	}
+}
+void IngDattabla (int tab, int lim)
+{
+	printf("\nIngrese la tabla a multiplicar: ");
+	fputs("\nIngrese la tabla a multiplicar: ", archivo);
+	scanf("%d",&tab);
+	fprintf(archivo,"%d",tab);
+	printf("Ingrese el límite de la tabla: ");
+	fputs("Ingrese el límite de la tabla: ", archivo);
+	scanf("%d",&lim);
+	fprintf(archivo,"%d",lim);
+	TabMult(tab, lim);
+}
+void TabMult (int tab, int lim)
+{
+	int i, prod;
+	for(i=1;i<=lim;i++)
+	{
+		prod=tab*i;
+		printf("\n%d x %d = %d", tab, i, prod);
+		fprintf(archivo,"\n%d x %d = %d", tab, i, prod);
+	}
+}
+void IngFact(int facto//ingreso de datos factorial
+{
+	printf("\nIngrese el número del que desea obtener el factorial: ");*//pide el numerpo del que se desea obtener el factorial
+	fputs("\nIngrese el número del que desea obtener el factorial: ", archivo);//escribe la sentencia anterior en el archivo
+	scanf("%d",&facto);//recoge el numero para obtener el factorial
+	fprintf(archivo,"%d",facto);//escribe el numero en el archivo
+	ProcFact(facto);//ingresa al proceso de factorial
+}
+void ProcFact (int facto)//proceso para obtener el factorial
+{
+	int count,FAC=1;//declara un contador y la variable donde se guardará el factorial
+	for(count=facto;count>0;count--)//en este for se duplica la variable facto y se analiza la condicionde que sea mayor a cero para repetir las sentencias dentro del for, ademas por cada repeticion se restara la unidad al contador
+	{
+		FAC=FAC*count;//FAC guardará el resultado de la multiplicacion hasta llegar al factorial: FAC de 3=> FAC=1*3, FAC=3*2, FAC=6*1 por lo cual fac es igual a 6 que es, a su vez, el factorial de 3 
+	}
+	printf("El factorial de %d es %d", facto, FAC);//iprime el valor edl que se sacói el factorial junto con el respectivo factorial
+	fprintf(archivo,"El factorial de %d es %d", facto, FAC);//escribe la sentencia anterior en elarchivo
+}
